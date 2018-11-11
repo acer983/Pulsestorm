@@ -1,0 +1,26 @@
+<style>
+   td {padding:10px;}
+</style>
+<p>Це Богдан!</p>
+<button onclick="read_w();">Зчитати дані</button>
+<div id='tt'></div>
+<script>
+ //alert("Привіт!");
+  //require(['bootstrap']);
+  function read_w(){
+	  require([ 'jquery'], function($){
+  $.ajax({
+    type: 'POST',
+    url: '../../../../read/read',
+    success: function( res ) {
+      console.log( res );
+	  $("#tt").empty();
+      $("#tt").html(res);
+    }
+  });
+  });
+	}
+  
+
+  
+</script>

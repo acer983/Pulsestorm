@@ -1,22 +1,35 @@
 <?php
-namespace Pulsestorm\HelloWorldMVVM\Controller\Hello;
-use Magento\Framework\View\Result\PageFactory;
-use Magento\Framework\App\Action\Context;
-
-class World extends \Magento\Framework\App\Action\Action
+namespace Pulsestorm\HelloWorldMVVM\Controller\Adminhtml\Read;
+class Read extends \Magento\Framework\App\Action\Action
 {
-    protected $pageFactory;
-    public function __construct(Context $context, PageFactory $pageFactory)
-    {
-        $this->pageFactory = $pageFactory;
-        return parent::__construct($context);
-    }
-
     public function execute()
-    {         
-        var_dump(__METHOD__);
-        $page_object = $this->pageFactory->create();
-        return $page_object;
+    {
+		$objectManager = \Magento\Framework\App\ObjectManager::getInstance(); // Instance of object manager
+$resource = $objectManager->get('Magento\Framework\App\ResourceConnection');
+$connection = $resource->getConnection();
+$tableName = $resource->getTableName('employee'); //gives table name with prefix
+ 
+
+$sql = "Select * FROM " . $tableName;
+$result = $connection->fetchAll($sql);
+//$result=$connection->query($sql);
+        if($result==true){
+			echo("<table>");
+			 foreach($result as $element){
+			echo '<tr><td><p style="color:red; font-size:14px;">'.$element["emp_id"].'</p></td>
+			<td><p style="color:red; font-size:14px;">'.$element["mail"].'</p></td>
+			<td><p style="color:red; font-size:14px;">'.$element["phone"].'</p></td>
+			<td><p style="color:red; font-size:14px;">'.$element["message"].'</p></td>
+			</tr>';
+          } 
+		  echo("</table>");
+		  
+        echo '<p style="color:red; font-size:20px;">'.'</p>';
+		}
+		else{
+			echo '<p style="color:red; font-size:20px;">Помилка!</p>';
+		}
+        //var_dump(__METHOD__);
     }    
 }
 

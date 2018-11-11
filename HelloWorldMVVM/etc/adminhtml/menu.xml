@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+    <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+        <menu>
+          <add id="Pulsestorm_HelloWorldMVVM::greetings" title="Нова група" translate="title" module="Pulsestorm_HelloWorldMVVM" parent="Magento_Backend::content" sortOrder="50" dependsOnModule="Pulsestorm_HelloWorldMVVM" resource="Pulsestorm_HelloWorldMVVM::greetings"/>
+          <add id="Pulsestorm_HelloWorldMVVM::greetings_helloworld" title="Користувачі" translate="title" module="Pulsestorm_HelloWorldMVVM" parent="Pulsestorm_HelloWorldMVVM::greetings" sortOrder="10" dependsOnModule="Pulsestorm_HelloWorldMVVM" action="helloworldmvvm/helloworld" resource="Pulsestorm_HelloWorldMVVM::greetings"/>
+        </menu>
+    </config>
